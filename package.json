@@ -1,0 +1,8 @@
+{
+  "name": "am-tabbar-rn-template",
+  "version": "0.0.1",
+  "description": "React Native Tabbar Template including React Navigation and some other packages",
+  "repository": "git@github.com:anumothuR/am-tabbar-rn-template.git",
+  "author": "Anumothu Rajendran <anumothu911@gmail.com>",
+  "license": "MIT"
+}
