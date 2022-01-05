@@ -17,7 +17,7 @@ import {
 import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
-
+import Home from './Home'
 
 
 const App = () => {
@@ -30,6 +30,7 @@ const App = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <Text>My first sample template</Text>
+      <Home></Home>
     </SafeAreaView>
   );
 };
