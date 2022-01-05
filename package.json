@@ -3,11 +3,5 @@
   "version": "0.0.1",
   "description": "React Native Tabbar Template including React Navigation and some other packages",
   "repository": "https://github.com/anumothuR/am-tabbar-rn-template.git",
-  "author": "Anumothu Rajendran",
-  "license": "MIT",
-  "dependencies": {
-    "appcenter": "^4.3.0",
-    "appcenter-analytics": "^4.3.0",
-    "appcenter-crashes": "^4.3.0"
-  }
+  "author": "Anumothu Rajendran"
 }
