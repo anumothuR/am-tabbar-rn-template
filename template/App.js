@@ -6,52 +6,63 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   Text,
-  useColorScheme
+  Linking, 
+  Alert 
 } from 'react-native';
 
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
-import Home from './Home'
-
+import { updateAppInstalledDate } from './src/service/AsyncStorage'
+import VersionCheck from 'react-native-version-check';
+import TabbarNavigation from './src/navigation/TabbarNavigation';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  useEffect(() => {
+    forceUpdateCheck();
+
+    updateAppInstalledDate();
+  }, []);
+
+
+  const forceUpdateAlert = (checkversion) => {
+    Alert.alert(
+      'App Update',
+      `Please update the latest version ${checkversion.latestVersion} for seamless experience`,
+      [
+        {
+          text: 'Update',
+          onPress: () => {
+            Linking.openURL(checkversion.storeUrl);
+          },
+        },
+      ],
+    );
+  };
+
+  const forceUpdateCheck = async () => {
+    try {
+      const checkversion = await VersionCheck.needUpdate({
+        forceUpdate: true,
+      });
+
+      if (checkversion && checkversion.isNeeded) {
+        if (Linking.canOpenURL(checkversion.storeUrl)) {
+          forceUpdateAlert(checkversion);
+        }
+      }
+    } catch (e) {
+      // eslint-disable-next-line
+      console.log('checkversion error', e);
+    }
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <Text>My first sample template</Text>
-      <Home></Home>
-    </SafeAreaView>
+    <TabbarNavigation></TabbarNavigation>
   );
 };
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
