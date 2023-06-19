@@ -10,3 +10,10 @@ Included Features
 4. Async storage 
 5. Appcenter analytics 
 6. Rate the app
+
+
+## installation 
+
+```
+npx react-native init {projectname} --template https://github.com/anumothuR/am-tabbar-rn-template.git
+```
